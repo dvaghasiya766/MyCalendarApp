@@ -1,66 +1,12 @@
-// import { Pressable, StyleSheet, Text, View } from "react-native";
-// import React from "react";
-// import { Colors } from "../../Theme/Colors";
-// import { Fonts } from "../../Theme/Fonts";
-
-// interface PrimaryButtonProps {
-//   onPress: () => void;
-//   children: React.ReactNode;
-// }
-
-// export default function PrimaryButton({
-//   onPress,
-//   children,
-// }: PrimaryButtonProps) {
-//   return (
-//     <View style={styles.buttonOuterContainer}>
-//       <Pressable
-//         onPress={onPress}
-//         android_ripple={{ color: Colors.primaryDark }}
-//         style={({ pressed }) =>
-//           pressed
-//             ? [styles.buttonInnercontainer, styles.pressed]
-//             : styles.buttonInnercontainer
-//         }
-//       >
-//         <Text style={styles.buttonText}>{children}</Text>
-//       </Pressable>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   buttonOuterContainer: { borderRadius: 28, margin: 10, overflow: "hidden" },
-//   buttonInnercontainer: {
-//     backgroundColor: Colors.primary,
-//     // paddingVertical: 8,
-//     paddingHorizontal: 16,
-//     elevation: 2,
-//     shadowColor: "#000",
-//     shadowOffset: { width: 0, height: 2 },
-//     shadowRadius: 4,
-//     shadowOpacity: 0.3,
-//   },
-//   buttonText: {
-//     color: "#fff",
-//     textAlign: "center",
-//     fontFamily: Fonts.regular, // custom font
-//   },
-//   pressed: {
-//     backgroundColor: Colors.primaryLight,
-//     // opacity: 0.75, // This will apply a slight opacity change when the button is pressed
-//   },
-// });
-// // #F9A825
-
 import React from "react";
 import {
   StyleSheet,
   Text,
   Pressable,
   GestureResponderEvent,
+  View,
 } from "react-native";
-import Gradient from "../UI/Gradient";
+import { Colors } from "../../Theme/Colors";
 
 interface PrimaryButtonProps {
   title: string;
@@ -69,18 +15,27 @@ interface PrimaryButtonProps {
 
 export default function PrimaryButton({ title, onPress }: PrimaryButtonProps) {
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => pressed && styles.pressed}
-    >
-      <Gradient>
-        <Text style={styles.text}>{title}</Text>
-      </Gradient>
-    </Pressable>
+    <View style={[styles.outterContainer, { width: "100%" }]}>
+      <Pressable
+        onPress={onPress}
+        android_ripple={{ color: Colors.info }}
+        style={({ pressed }) => pressed && styles.pressed}
+      >
+        <View style={styles.innerContainer}>
+          <Text style={styles.text}>{title}</Text>
+        </View>
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  outterContainer: {
+    borderRadius: 8,
+    backgroundColor: Colors.primary,
+    overflow: "hidden",
+  },
+  innerContainer: { paddingVertical: 12, paddingHorizontal: 24 },
   text: {
     fontSize: 16,
     fontWeight: "600",
@@ -88,6 +43,18 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   pressed: {
-    opacity: 0.85,
+    opacity: 0.9,
   },
 });
+
+{
+  /* <PrimaryButton
+  title="Sign in with Facebook"
+  onPress={() =>
+    Alert.alert(
+      "Forbidden 403!",
+      "Currently Not Available this Functionality..."
+    )
+  }
+/>; */
+}
