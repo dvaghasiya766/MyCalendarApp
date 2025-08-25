@@ -17,7 +17,8 @@
     "react-native": "0.79.6",
     "react-native-safe-area-context": "^5.6.1",
     "expo-splash-screen": "~0.30.10",
-    "expo-font": "~13.3.2"
+    "expo-font": "~13.3.2",
+    "react-native-reanimated": "~3.17.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

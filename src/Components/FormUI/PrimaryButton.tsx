@@ -32,7 +32,7 @@ export default function PrimaryButton({ title, onPress }: PrimaryButtonProps) {
 
 const styles = StyleSheet.create({
   outterContainer: {
-    marginVertical: 14,
+    marginVertical: 10,
     borderRadius: 8,
     backgroundColor: Colors.primary,
     overflow: "hidden",

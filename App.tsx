@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { View, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle,
+  Easing,
+} from "react-native-reanimated";
 import * as SplashScreen from "expo-splash-screen";
+
+// Custom Components
+import SignInScreen from "./src/Screens/SignInScreen";
+import { statusGradients } from "./src/Theme/Colors";
 import Gradient from "./src/Components/UI/Gradient";
-import PrimaryButton from "./src/Components/FormUI/PrimaryButton";
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -29,17 +39,20 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.container}>
-          <Text style={{ fontFamily: "Poppins-Bold" }}>
-            Open up App.tsx to start working on your app Hello!
-          </Text>
-          <PrimaryButton onPress={() => console.log("button pressed!")}>
-            Hello
-          </PrimaryButton>
-          <Gradient />
-        </View>
-      </SafeAreaView>
+      <View style={styles.container}>
+        <StatusBar style="light" />
+        <Gradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          colors={statusGradients.primary}
+          style={styles.container}
+        >
+          <SafeAreaView style={styles.container}>
+            <SignInScreen />
+            {/* <AnimatedStyleUpdateExample /> */}
+          </SafeAreaView>
+        </Gradient>
+      </View>
     </SafeAreaProvider>
   );
 }
@@ -47,8 +60,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    width: "100%",
   },
 });
