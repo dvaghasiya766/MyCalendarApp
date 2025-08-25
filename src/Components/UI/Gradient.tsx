@@ -6,6 +6,7 @@ interface GradientButtonProps {
   colors?: readonly [ColorValue, ColorValue, ...ColorValue[]]; // gradient colors
   start?: { x: number; y: number };
   end?: { x: number; y: number };
+  style?: any;
   children: React.ReactNode;
 }
 
@@ -13,12 +14,13 @@ export default function Gradient({
   colors = ["#4c669f", "#3b5998", "#192f6a"], // default gradient
   start = { x: 1, y: 0 },
   end = { x: 0, y: 0 },
+  style,
   children,
 }: GradientButtonProps) {
   return (
     <LinearGradient
       colors={colors}
-      style={styles.button}
+      style={style ? [style, styles.button] : styles.button}
       start={start}
       end={end}
     >

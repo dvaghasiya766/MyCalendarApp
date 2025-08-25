@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { Colors } from "../../Theme/Colors";
+import { Fonts } from "../../Theme/Fonts";
 
 interface PrimaryButtonProps {
   title: string;
@@ -31,6 +32,7 @@ export default function PrimaryButton({ title, onPress }: PrimaryButtonProps) {
 
 const styles = StyleSheet.create({
   outterContainer: {
+    marginVertical: 14,
     borderRadius: 8,
     backgroundColor: Colors.primary,
     overflow: "hidden",
@@ -38,7 +40,10 @@ const styles = StyleSheet.create({
   innerContainer: { paddingVertical: 12, paddingHorizontal: 24 },
   text: {
     fontSize: 16,
+    lineHeight: 20,
+    fontFamily: Fonts.medium,
     fontWeight: "600",
+    textAlign: "center",
     color: "#fff",
     backgroundColor: "transparent",
   },
