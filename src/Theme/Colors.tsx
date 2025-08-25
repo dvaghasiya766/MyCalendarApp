@@ -1,6 +1,8 @@
+import { ColorValue } from "react-native";
+
 export const Colors = {
   // Primary colors
-  primary: "#F9A825",
+  primary: "#3b82f6",
   primaryLight: "#FFA630",
   primaryDark: "#FF8833",
 
@@ -76,11 +78,16 @@ export const gradientColors = [
 ];
 
 // Status gradient colors for AgencyItem
-export const statusGradients = {
+type GradientTuple = readonly [ColorValue, ColorValue, ...ColorValue[]];
+export const statusGradients: Record<
+  "active" | "inactive" | "pending" | "default" | "primary",
+  GradientTuple
+> = {
   active: [Colors.gradientGreen, Colors.gradientGreenDark],
   inactive: [Colors.gradientRed, Colors.gradientRedDark],
   pending: [Colors.gradientOrange, Colors.gradientOrangeDark],
   default: [Colors.gradientGray, Colors.gradientGrayDark],
+  primary: ["#60a5fa", "#a78bfa", "#e2e8f0"],
 };
 
 // Stat bubble gradient colors
