@@ -20,10 +20,6 @@ interface AppTextInputProps extends TextInputProps {
 }
 
 export default function AppTextInput({ label, ...props }: AppTextInputProps) {
-  // const [isFocused, setIsFocused] = useState({
-  //   isFocused: false,
-  //   topValue: 19,
-  // });
   // const [enteredText, setEnteredText] = useState("");
 
   // function onChangeText(text: string) {
@@ -49,9 +45,7 @@ export default function AppTextInput({ label, ...props }: AppTextInputProps) {
     setEnteredText(text);
     // If user types something, keep label on top
     if (text.trim() !== "") {
-      setLabelState({ isFocused: true, topValue: -5 });
-    } else {
-      setLabelState({ isFocused: false, topValue: 19 });
+      setEnteredText(text);
     }
   }
 
@@ -89,7 +83,7 @@ export default function AppTextInput({ label, ...props }: AppTextInputProps) {
         cursorColor={Colors.primary}
         {...props}
         style={labelState.isFocused ? styles.selectedInput : styles.input}
-        onChange={onChangeText}
+        onChangeText={(text) => onChangeText(text)}
         onFocus={onFocus}
         onBlur={onBlur}
       />
