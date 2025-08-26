@@ -20,21 +20,6 @@ interface AppTextInputProps extends TextInputProps {
 }
 
 export default function AppTextInput({ label, ...props }: AppTextInputProps) {
-  // const [enteredText, setEnteredText] = useState("");
-
-  // function onChangeText(text: string) {
-  //   setEnteredText(text);
-  // }
-  // function onFocus() {
-  //   setIsFocused({ isFocused: true, topValue: -5 });
-  // }
-  // function onBlur() {
-  //   const givenText = String(enteredText.trim());
-  //   if (givenText.trim() !== null) {
-  //     setIsFocused({ isFocused: false, topValue: 19 });
-  //   }
-  // }
-
   const [enteredText, setEnteredText] = useState("");
   const [labelState, setLabelState] = useState({
     isFocused: false,
@@ -71,7 +56,10 @@ export default function AppTextInput({ label, ...props }: AppTextInputProps) {
 
   const selectedLabel = useAnimatedStyle(() => {
     return {
-      left: withTiming(16, config),
+      color: withTiming(
+        labelState.isFocused ? Colors.primary : Colors.gray200,
+        config
+      ),
       top: withTiming(labelState.topValue, config),
     };
   });
@@ -80,6 +68,7 @@ export default function AppTextInput({ label, ...props }: AppTextInputProps) {
     <View style={styles.container}>
       <TextInput
         autoCorrect={true}
+        autoCapitalize="words"
         cursorColor={Colors.primary}
         {...props}
         style={labelState.isFocused ? styles.selectedInput : styles.input}
@@ -108,7 +97,7 @@ const styles = StyleSheet.create({
     left: 16,
     top: 19,
     backgroundColor: Colors.white,
-    ...text(3.5, Colors.gray400, Fonts.medium),
+    ...text(3.5, Colors.gray200, Fonts.medium),
   },
   input: {
     height: 50,
