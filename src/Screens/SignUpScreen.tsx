@@ -1,4 +1,11 @@
-import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import React, { useRef } from "react";
 import Title from "../Components/UI/Title";
 import PrimaryButton from "../Components/FormUI/PrimaryButton";
@@ -12,10 +19,10 @@ function handleSignIn() {
 }
 
 export default function SignUpScreen() {
-  const emailRef = useRef(null);
-  const nameRef = useRef(null);
-  const passwordRef = useRef(null);
-  const repasswordRef = useRef(null);
+  const emailRef = useRef<TextInput>(null);
+  const nameRef = useRef<TextInput>(null);
+  const passwordRef = useRef<TextInput>(null);
+  const repasswordRef = useRef<TextInput>(null);
 
   return (
     <View style={styles.rootContainer}>

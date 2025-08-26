@@ -27,6 +27,10 @@ interface AppTextInputProps extends TextInputProps {
 const AppTextInput = forwardRef<TextInput, AppTextInputProps>(
   ({ label, isPsw = false, ...props }, ref) => {
     const inputRef = useRef<TextInput>(null);
+
+    // expose imperative methods to parent
+    useImperativeHandle(ref, () => inputRef.current);
+
     const [isSecure, setIsSecure] = useState(isPsw);
     const [enteredText, setEnteredText] = useState("");
     const [labelState, setLabelState] = useState({
@@ -36,25 +40,18 @@ const AppTextInput = forwardRef<TextInput, AppTextInputProps>(
       border: Colors.gray100,
     });
 
-    // expose imperative methods to parent
-    useImperativeHandle(ref, () => inputRef.current);
-
     const toggleVisibility = () => setIsSecure((prev) => !prev);
+    const onChangeText = (text: string) => setEnteredText(text);
 
-    function onChangeText(text: string) {
-      setEnteredText(text);
-    }
-
-    function onFocus() {
+    const onFocus = () =>
       setLabelState({
         isFocused: true,
         topValue: -4,
         color: Colors.primary,
         border: Colors.primary,
       });
-    }
 
-    function onBlur() {
+    const onBlur = () => {
       const givenText = enteredText.trim();
       if (givenText !== "") {
         setLabelState({
@@ -71,7 +68,7 @@ const AppTextInput = forwardRef<TextInput, AppTextInputProps>(
           border: Colors.gray100,
         });
       }
-    }
+    };
 
     const colorConfig = { duration: 400, easing: Easing.inOut(Easing.ease) };
     const positionConfig = {
@@ -88,10 +85,6 @@ const AppTextInput = forwardRef<TextInput, AppTextInputProps>(
 
     const selectedInput = useAnimatedStyle(() => ({
       borderColor: withTiming(labelState.border, colorConfig),
-      color: withTiming(
-        labelState.isFocused ? Colors.gray800 : Colors.primary,
-        colorConfig
-      ),
     }));
 
     return (
@@ -154,6 +147,6 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     paddingHorizontal: 23,
     overflow: "hidden",
-    ...text(3.5, Colors.gray400, Fonts.regular),
+    ...text(3.5, Colors.gray400, Fonts.medium),
   },
 });

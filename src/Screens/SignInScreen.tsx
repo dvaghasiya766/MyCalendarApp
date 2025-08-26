@@ -1,8 +1,16 @@
-import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import React, { useRef } from "react";
 import Title from "../Components/UI/Title";
 import PrimaryButton from "../Components/FormUI/PrimaryButton";
 import AppTextInput from "../Components/FormUI/AppTextInput";
+import { Colors } from "../Theme/Colors";
 
 function handleSignIn() {
   Alert.alert(
@@ -13,7 +21,7 @@ function handleSignIn() {
 
 export default function SignInScreen() {
   const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const passwordRef = useRef<TextInput>(null);
 
   return (
     <View style={styles.rootContainer}>
@@ -24,6 +32,7 @@ export default function SignInScreen() {
             <AppTextInput
               ref={emailRef}
               label="Enter Your Email"
+              autoComplete="email" // or "off", "name", "password" etc. (as needed)
               keyboardType="email-address"
               autoCapitalize="none"
               returnKeyType="next"
