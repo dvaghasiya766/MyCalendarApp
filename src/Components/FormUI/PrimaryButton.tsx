@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   pressed: {
-    opacity: 0.9,
+    backgroundColor: Colors.gradientBlueDark,
   },
 });
 
