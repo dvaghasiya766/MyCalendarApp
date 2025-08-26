@@ -1,5 +1,5 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useRef } from "react";
 import Title from "../Components/UI/Title";
 import PrimaryButton from "../Components/FormUI/PrimaryButton";
 import AppTextInput from "../Components/FormUI/AppTextInput";
@@ -12,14 +12,34 @@ function handleSignIn() {
 }
 
 export default function SignInScreen() {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
   return (
     <View style={styles.rootContainer}>
       <View style={styles.innerContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Title>Sign In Here</Title>
-          <AppTextInput label="Enter Your Email" />
-          <AppTextInput label="Enter Your Name" />
-          <PrimaryButton title="Sign In Now" onPress={handleSignIn} />
+          <Title>Sign Up Here</Title>
+          <View style={styles.inputContainer}>
+            <AppTextInput
+              ref={emailRef}
+              label="Enter Your Email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              returnKeyType="next"
+              autoCorrect={false}
+              onSubmitEditing={() => passwordRef.current?.focus()} // 👈 jump to Name
+            />
+            <AppTextInput
+              isPsw
+              ref={passwordRef}
+              label="Create New Password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="send"
+            />
+          </View>
+          <PrimaryButton title="Sign Up Now" onPress={handleSignIn} />
         </ScrollView>
       </View>
     </View>
@@ -39,5 +59,8 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     backgroundColor: "#fff",
+  },
+  inputContainer: {
+    marginTop: 8,
   },
 });

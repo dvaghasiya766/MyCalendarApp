@@ -14,6 +14,6 @@ export default function Title({ children }: TitleProps) {
 
 const styles = StyleSheet.create({
   title: {
-    ...text(7.9, Colors.info, Fonts.bold),
+    ...text(8, Colors.gray500, Fonts.bold),
   },
 });

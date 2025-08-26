@@ -15,6 +15,7 @@ import * as SplashScreen from "expo-splash-screen";
 import SignInScreen from "./src/Screens/SignInScreen";
 import { statusGradients } from "./src/Theme/Colors";
 import Gradient from "./src/Components/UI/Gradient";
+import SignUpScreen from "./src/Screens/SignUpScreen";
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -48,8 +49,8 @@ export default function App() {
           style={styles.container}
         >
           <SafeAreaView style={styles.container}>
-            <SignInScreen />
-            {/* <AnimatedStyleUpdateExample /> */}
+            {/* <SignInScreen /> */}
+            <SignUpScreen />
           </SafeAreaView>
         </Gradient>
       </View>

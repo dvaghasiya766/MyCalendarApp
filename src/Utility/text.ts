@@ -9,10 +9,8 @@ export const text = (
 ) => {
   return {
     includeFontPadding: false,
-    // textAlignVertical: "center",
     fontSize: (size && font(size)) || font(3.5),
     color,
     fontFamily,
-    // lineHeight: font(size + 2),
   };
 };
