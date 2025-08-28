@@ -51,8 +51,8 @@ export default function SignUpScreen() {
               isPsw
               ref={passwordRef}
               label="Create New Password"
-              onSubmitEditing={() => repasswordRef.current?.focus()}
               returnKeyType="next"
+              onSubmitEditing={() => repasswordRef.current?.focus()}
             />
             <AppTextInput
               isPsw
